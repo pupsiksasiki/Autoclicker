@@ -1,0 +1,2 @@
+# Almazus-Click
+автокликер
