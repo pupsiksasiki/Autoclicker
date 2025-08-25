@@ -96,13 +96,11 @@ tabclick.setLayout(figa)
 #для музыки разлкд
 fignea2 = QVBoxLayout()
 from PyQt5.QtCore import Qt, QUrl, QTimer, QSize
-# Текст с сылками на соцсети
+
 silka = QLabel(''
     '<center>'
     '<h3 style="font-size: 24px; margin: 15px;">соцсети:</h3>'
-    '<a href="https://github.com/pupsiksasiki/Almazus-Click" style="color: blue; text-decoration: none; margin: 0 60px; font-size: 20px;">GitHubs</a> | '
-    '<a href="https://youtube.com/@almazus?si=gSEutyDJqLmQXe1s" style="color: red; text-decoration: none; margin: 0 60px; font-size: 20px;">YouTube</a> | '
-    '<a href="https://t.me/LifeAlmazus" style="color: #0088cc; text-decoration: none; margin: 0 60px; font-size: 20px;">Telegram</a>'
+    '<a href="https://github.com/pupsiksasiki/Almazus-Click" style="color: blue; text-decoration: none; margin: 0 60px; font-size: 20px;">GitHubs</a>  '
     '</center>'
 '')
 silka.setOpenExternalLinks(True)
