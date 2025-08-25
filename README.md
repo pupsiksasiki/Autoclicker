@@ -31,7 +31,7 @@ Almazus-Click 🖱️✨
 
 <img width="593" height="417" alt="Снимок экрана" src="https://github.com/user-attachments/assets/86fd6be7-731d-4d92-aea5-e97ab9b2a5da" />
 
-<img width="593" height="429" alt="Снимок экрана" src="https://github.com/user-attachments/assets/2ac561e2-9792-4e27-acd1-893bbfd94a17" />
+
 
 <img width="589" height="411" alt="Снимок экрана" src="https://github.com/user-attachments/assets/ac036583-84e1-4179-923d-29853884c20f" />
 
