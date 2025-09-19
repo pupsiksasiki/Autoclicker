@@ -2,19 +2,18 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QTabWidget, QLabel, QPushButton,
     QLineEdit, QHBoxLayout, QComboBox, QGroupBox, QRadioButton, QGridLayout
 )
-from PyQt5.QtGui import QPalette, QColor
-from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QPalette, QColor, QIcon
+from PyQt5.QtCore import Qt, QUrl, QTimer, QSize
 from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QCheckBox
 import sys, os
+
 app = QApplication([])
 
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
-
-
 
 
 okno = QWidget()
@@ -27,6 +26,8 @@ paleta1.setColor(QPalette.Window, QColor(25, 25, 30))
 paleta1.setColor(QPalette.WindowText, QColor(220, 220, 230))
 okno.setPalette(paleta1)
 
+
+
 tabki = QTabWidget()
 tabclick = QWidget()
 tabmuz = QWidget()
@@ -37,7 +38,6 @@ layout_gl = QVBoxLayout()
 layout_gl.addWidget(tabki)
 okno.setLayout(layout_gl)
 
-
 figa = QVBoxLayout()
 
 grup1 = QGroupBox("Интервал кликов")
@@ -46,7 +46,6 @@ muzic_ms = QLineEdit("100")
 muzic_sec = QLineEdit("0")
 muzic_min = QLineEdit("0")
 muzic_hour = QLineEdit("0")
-#интеравал кликов
 grid1.addWidget(QLabel("Миллисекунды:"), 0, 0)
 grid1.addWidget(muzic_ms, 0, 1)
 grid1.addWidget(QLabel("Секунды"), 0, 2)
@@ -57,7 +56,7 @@ grid1.addWidget(QLabel("Часы"), 1, 2)
 grid1.addWidget(muzic_hour, 1, 3)
 grup1.setLayout(grid1)
 figa.addWidget(grup1)
-# тута раздеал для тип выбор мыши и тд
+
 grup2 = QGroupBox("Параметры клика")
 hl1 = QHBoxLayout()
 knopka1 = QComboBox()
@@ -70,7 +69,7 @@ hl1.addWidget(QLabel("Тип клика:"))
 hl1.addWidget(knopka2)
 grup2.setLayout(hl1)
 figa.addWidget(grup2)
-# тута отвечает за кол кликов 
+
 grup3 = QGroupBox("Режим работы")
 hl2 = QHBoxLayout()
 radio1 = QRadioButton("До остановки")
@@ -83,7 +82,7 @@ hl2.addWidget(QLabel("Раз:"))
 hl2.addWidget(stopcik1)
 grup3.setLayout(hl2)
 figa.addWidget(grup3)
-# тута раздел для этого стара или стопа
+
 hl3 = QHBoxLayout()
 startcik = QLabel("Старт (F6)")
 stopcik2 = QLabel("Стоп (F6)")
@@ -93,10 +92,7 @@ figa.addLayout(hl3)
 
 tabclick.setLayout(figa)
 
-#для музыки разлкд
 fignea2 = QVBoxLayout()
-from PyQt5.QtCore import Qt, QUrl, QTimer, QSize
-
 silka = QLabel(''
     '<center>'
     '<h3 style="font-size: 24px; margin: 15px;">соцсети:</h3>'
@@ -108,17 +104,8 @@ silka.setTextFormat(Qt.RichText)
 silka.setTextInteractionFlags(Qt.TextBrowserInteraction)
 fignea2.addWidget(silka)
 
-
-
-
-
-
-
-
-
 tabmuz.setLayout(fignea2)
 
-#тута стиль
 okno.setStyleSheet("""
     QTabWidget::pane { border: 1px solid #444; }
     QTabBar::tab { background: #333; color: #bbb; padding: 8px; }
@@ -132,9 +119,6 @@ okno.setStyleSheet("""
     QRadioButton, QCheckBox { color: #ddd; }
 """)
 
-
-
-
 grup_kps = QGroupBox("(КПС)")
 hl_kps = QHBoxLayout()
 kps_input = QLineEdit("10") 
@@ -142,7 +126,53 @@ hl_kps.addWidget(QLabel("КПС"))
 hl_kps.addWidget(kps_input)
 grup_kps.setLayout(hl_kps)
 figa.addWidget(grup_kps)
-grup_kps.hide() 
+grup_kps.hide()
+
+tabnastroek = QWidget()
+bas = QVBoxLayout()
+
+nastroiki = QGroupBox("Настройки")
+settings = QVBoxLayout()
+
+chk_topmost = QCheckBox("Поверх всех окон")
+wgite = QCheckBox("светлая тема")
+settings.addWidget(wgite)
+settings.addWidget(chk_topmost)
+
+nastroiki.setLayout(settings)
+bas.addWidget(nastroiki)
+tabnastroek.setLayout(bas)
+
+tabki.addTab(tabnastroek, "Настройки")
+
+def tema(state):
+    global paleta1
+    if state == 2:
+        paleta1.setColor(QPalette.Window, QColor(255, 255, 255))   
+        paleta1.setColor(QPalette.WindowText, QColor(0, 0, 0))     
+    else:
+        paleta1.setColor(QPalette.Window, QColor(25, 25, 30))
+        paleta1.setColor(QPalette.WindowText, QColor(220, 220, 230))
+
+        
+    okno.setPalette(paleta1)
+
+def status(state):
+    if state == 2: 
+        okno.setWindowFlags(okno.windowFlags() | Qt.WindowStaysOnTopHint)
+    else: 
+        okno.setWindowFlags(okno.windowFlags() & ~Qt.WindowStaysOnTopHint)
+    okno.show()
+
+chk_topmost.stateChanged.connect(status)
+wgite.stateChanged.connect(tema)
+
+
+
+
+
+
+
 
 
 
@@ -154,13 +184,10 @@ def obnovittext():
         grup1.show()
         grup_kps.hide()
 
-
 knopka2.currentIndexChanged.connect(obnovittext)
 
-
-
-
-
-
-
 stopcik2.setEnabled(False)
+
+
+
+
