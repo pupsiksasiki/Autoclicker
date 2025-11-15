@@ -31,8 +31,8 @@ okno.setPalette(paleta1)
 tabki = QTabWidget()
 tabclick = QWidget()
 tabmuz = QWidget()
-tabki.addTab(tabclick, "Автокликер")
-tabki.addTab(tabmuz, "сылки")
+tabki.addTab(tabclick, "Главная")
+tabki.addTab(tabmuz, "GitHub")
 
 layout_gl = QVBoxLayout()
 layout_gl.addWidget(tabki)
@@ -85,7 +85,7 @@ figa.addWidget(grup3)
 
 hl3 = QHBoxLayout()
 startcik = QLabel("Старт (F6)")
-stopcik2 = QLabel("Стоп (F6)")
+stopcik2 = QLabel("остоновить (F6)")
 hl3.addWidget(startcik)
 hl3.addWidget(stopcik2)
 figa.addLayout(hl3)
@@ -95,7 +95,7 @@ tabclick.setLayout(figa)
 fignea2 = QVBoxLayout()
 silka = QLabel(''
     '<center>'
-    '<h3 style="font-size: 24px; margin: 15px;">соцсети:</h3>'
+    '<h3 style="font-size: 24px; margin: 15px;">GitHub</h3>'
     '<a href="https://github.com/pupsiksasiki/Almazus-Click" style="color: blue; text-decoration: none; margin: 0 60px; font-size: 20px;">GitHubs</a>  '
     '</center>'
 '')
@@ -136,14 +136,28 @@ settings = QVBoxLayout()
 
 chk_topmost = QCheckBox("Поверх всех окон")
 wgite = QCheckBox("светлая тема")
+antiafk = QCheckBox("Anti-afk")
+sajim = QCheckBox("зажим(f7)")
 settings.addWidget(wgite)
 settings.addWidget(chk_topmost)
+settings.addWidget(antiafk)
+settings.addWidget(sajim)
 
 nastroiki.setLayout(settings)
 bas.addWidget(nastroiki)
 tabnastroek.setLayout(bas)
 
 tabki.addTab(tabnastroek, "Настройки")
+
+
+sajim.setChecked(True)
+
+
+
+
+
+
+
 
 def tema(state):
     global paleta1
@@ -164,8 +178,16 @@ def status(state):
         okno.setWindowFlags(okno.windowFlags() & ~Qt.WindowStaysOnTopHint)
     okno.show()
 
+
+
+
+
+
+
+
 chk_topmost.stateChanged.connect(status)
 wgite.stateChanged.connect(tema)
+
 
 
 
